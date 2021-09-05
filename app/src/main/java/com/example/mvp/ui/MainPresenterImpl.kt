@@ -1,4 +1,4 @@
-package com.example.mvp
+package com.example.mvp.ui
 
 import com.example.mvp.interfaces.MainContract
 import com.example.mvp.model.Article

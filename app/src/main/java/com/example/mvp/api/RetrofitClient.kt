@@ -1,5 +1,6 @@
 package com.example.mvp.api
 
+import com.example.mvp.utils.Util
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,7 +16,7 @@ class RetrofitClient {
                 .addInterceptor(interceptor)
                 .build()
 
-            Retrofit.Builder().baseUrl("https://newsapi.org/")
+            Retrofit.Builder().baseUrl(Util.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

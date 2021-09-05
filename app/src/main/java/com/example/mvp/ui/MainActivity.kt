@@ -1,4 +1,4 @@
-package com.example.mvp
+package com.example.mvp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mvp.R
 import com.example.mvp.adapter.NewsAdapter
 import com.example.mvp.interfaces.MainContract
 import com.example.mvp.model.Article
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity(), MainContract.MainView,NewsAdapter.OnIt
 
         initRecycler()
 
-        presenter=MainPresenterImpl(this,GetNoticeIntractorImpl())
+        presenter= MainPresenterImpl(this, GetNoticeIntractorImpl())
         presenter.requestDataFromServer()
     }
 
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity(), MainContract.MainView,NewsAdapter.OnIt
     override fun setDataToRecyclerView(noticeArrayList: List<Article>) {
         newsAdapter= NewsAdapter(this)
         rv_main.adapter=newsAdapter
+        newsAdapter.differ.submitList(noticeArrayList)
     }
 
     override fun onResponseFailure(throwable: Throwable?) {

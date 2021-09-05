@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mvp.R
 import com.example.mvp.model.Article
 import kotlinx.android.synthetic.main.news_row.view.*
@@ -34,13 +35,15 @@ class NewsAdapter(val listener:OnItemClickListener):RecyclerView.Adapter<NewsAda
         val a=differ.currentList[position]
 
         holder.itemView.apply {
-            text_author.text=a.author
             text_title.text=a.title
 
             setOnClickListener {
                 listener.onItemClickListener(a)
             }
         }
+        Glide.with(holder.itemView.imageView)
+            .load(a.urlToImage).into(holder.itemView.imageView)
+
 
     }
 

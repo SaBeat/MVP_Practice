@@ -1,8 +1,9 @@
-package com.example.mvp
+package com.example.mvp.ui
 
 import com.example.mvp.api.RetrofitClient
 import com.example.mvp.interfaces.MainContract
 import com.example.mvp.model.NewsResponse
+import com.example.mvp.utils.Util
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -11,7 +12,7 @@ class GetNoticeIntractorImpl: MainContract.GetNoticeIntractor {
     override fun getNoticeArrayList(onFinishedListener: MainContract.GetNoticeIntractor.OnFinishedListener?) {
 
         val call=RetrofitClient.getApi.
-                 getHeadlines("964eeec67d2848e287bdbdc05bf00d35","us","business")
+                 getHeadlines(Util.API_KEY,Util.country,Util.category)
 
         call.enqueue(object:Callback<NewsResponse>{
             override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
